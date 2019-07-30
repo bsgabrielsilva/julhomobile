@@ -1,0 +1,9 @@
+{% extends './base.html' %}
+
+{% block titulo %}
+Home
+{% endblock titulo %}
+
+{% block corpo %}
+<h1>Seja bem vindo, {{ request.user.username }}</h1>
+{% endblock corpo %}

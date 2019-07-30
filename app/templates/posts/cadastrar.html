@@ -1,0 +1,18 @@
+{% extends '../base.html' %}
+{% load crispy_forms_tags %}
+
+{% block titulo %}
+Gerenciar Post
+{% endblock titulo %}
+
+{% block corpo %}
+<h2>Gerenciar Post</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <br>
+    <input class="btn btn-success" type="submit" value="Salvar">
+    <a class='btn btn-danger' href="{% url 'home_posts' %}">Cancelar</a>
+</form>
+
+{% endblock corpo %}
