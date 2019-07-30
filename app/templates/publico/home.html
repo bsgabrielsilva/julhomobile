@@ -11,6 +11,7 @@ Todas as postagens
         <h4><strong>{{ p.titulo }}</strong></h4>
         <h5><strong>{{ p.user.username }}</strong> - {{ p.updated|date:'d/m/Y H:i:s' }}</h5>
         <p>{{ p.corpo }}</p>
+        <a href="{% url 'postagem' pk=p.pk %}">Ver mais</a>
     </div>
     <br>
     {% empty %}

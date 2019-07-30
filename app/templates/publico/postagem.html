@@ -1,0 +1,49 @@
+{% extends '../base.html' %}
+{% load crispy_forms_tags %}
+
+{% block titulo %}
+Postagem
+{% endblock titulo %}
+
+{% block corpo %}
+<div class="col-12">
+    <div class="card card-body">
+        <h4><strong>{{ post.titulo }}</strong></h4>
+        <h5><strong>{{ post.user.username }}</strong> - {{ post.updated|date:'d/m/Y H:i:s' }}</h5>
+        <p>{{ post.corpo }}</p>
+        <h5><strong>Comentários</strong></h5>
+        {% for c in post.comments.all %}
+            <p><strong>{{ c.user.username }} </strong> - {{ c.comment }}</p>
+        {% empty %}
+            <p>Nenhum comentário adicionado!</p>
+        {% endfor %}
+        {% if form is not None %}
+        <a href="#" class="btn btn-success btn-sm" data-toggle="modal" data-target="#cadastrarComentario">
+            Adicionar comentário
+        </a>
+                <!-- Modal canais -->
+        <div class="modal fade" id="cadastrarComentario" role="dialog">
+            <div class="modal-dialog modal-md">
+
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <form method="post">
+                            {% csrf_token %}
+                            {{ form|crispy }}
+                            <br>
+                            <button class="btn btn-success btn-sm" type="submit">
+                                <i class="material-icons align-middle">save</i>Salvar
+                            </button>
+                            <button type="button" data-dismiss="modal" class="btn btn-danger btn-sm">
+                                <i class="material-icons align-middle">cancel</i>Fechar
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+    <br>
+</div>
+{% endblock corpo %}

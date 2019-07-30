@@ -5,6 +5,7 @@ urlpatterns = [
     path('login/', autenticacao, name="login"),
     path('sair/', sair, name="sair"),
     path('', postagens, name="postagens"),
+    path('post/<int:pk>', postagem, name="postagem"),
     path('home/', home, name="home"),
 
     path('posts/', home_post, name="home_posts"),

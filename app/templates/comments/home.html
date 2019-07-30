@@ -1,0 +1,45 @@
+{% extends '../base.html' %}
+
+{% block titulo %}
+Posts
+{% endblock titulo %}
+
+{% block corpo %}
+<br>
+<h1>Posts</h1>
+<br>
+<a href="{% url 'cadastrar_post' %}" class="btn btn-success">Cadastrar</a>
+<div class="table-responsive">
+    <table class="table table-striped table-sm">
+        <thead class="thead-dark">
+            <tr>
+                <th>Título</th>
+                <th>Adicionado em</th>
+                <th>Última atualização</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for c in lista %}
+            <tr>
+                <td>{{ c.titulo }}</td>
+                <td>{{ c.created|date:'d/m/Y h:i:s' }}</td>
+                <td>{{ c.updated|date:'d/m/Y h:i:s' }}</td>
+                <td>
+                    <a title="Editar" class="btn btn-warning btn-sm" href="{% url 'editar_post' pk=c.pk %}">
+                        <i class="material-icons align-middle">edit</i> Editar
+                    </a>
+                    <a title="Remover" class="btn btn-danger btn-sm" href="{% url 'remover_post' pk=c.pk %}">
+                        <i class="material-icons align-middle">close</i> Remover
+                    </a>
+                </td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="4">Sem registro!</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock corpo %}
