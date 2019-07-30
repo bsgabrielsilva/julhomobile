@@ -1,4 +1,4 @@
-{% extends './base.html' %}
+{% extends '../base.html' %}
 
 {% block titulo %}
 Todas as postagens
@@ -9,9 +9,10 @@ Todas as postagens
     {% for p in posts %}
     <div class="card card-body">
         <h4><strong>{{ p.titulo }}</strong></h4>
-        <h5><strong>{{ p.user.username }}</strong> - {{ p.updated_at|date:'d/m/Y H:i:s' }}</h5>
-        <p>{{ c.corpo }}</p>
+        <h5><strong>{{ p.user.username }}</strong> - {{ p.updated|date:'d/m/Y H:i:s' }}</h5>
+        <p>{{ p.corpo }}</p>
     </div>
+    <br>
     {% empty %}
     <div class="card card-body">
         <h4><strong>Nenhuma postagem encontrada!</strong></h4>
