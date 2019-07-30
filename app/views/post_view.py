@@ -47,3 +47,15 @@ def home_post(request, template_name="posts/home.html"):
     except Exception:
         messages.error(request, "Erro ao acessar home.")
     return render(request, template_name, {'lista': lista})
+
+
+@login_required
+def remover_post(request, pk):
+    if request.user.is_staff:
+        try:
+            post = get_object_or_404(Post, pk=pk)
+            post.delete()
+            messages.success(request, "Post removido com sucesso")
+        except Exception:
+            messages.error(request, "Não possível remover Post!")
+        return redirect('home_posts')

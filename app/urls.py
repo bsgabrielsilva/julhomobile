@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import autenticacao, sair, home, home_post, editar_post, cadastrar_post
+from .views import *
 
 urlpatterns = [
     path('login/', autenticacao, name="login"),
@@ -8,5 +8,6 @@ urlpatterns = [
 
     path('posts/', home_post, name="home_posts"),
     path('posts/cadastrar', cadastrar_post, name="cadastrar_post"),
-    path('posts/editar/<int:pk>', editar_post, name="editar_post")
+    path('posts/editar/<int:pk>', editar_post, name="editar_post"),
+    path('posts/remover/<int:pk>', remover_post, name="remover_post")
 ]
